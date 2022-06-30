@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Email } from '@mui/icons-material';
+import React, { useState } from 'react';
+import { generate } from 'shortid';
+import { MyForm } from './MyForm';
+import { MyTable } from './MyTable';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const [ rows, setRows ] = useState([
+		{
+			id: '2So-re3TE',
+			firstName: 'Giorgiana',
+			lastName: 'Kisha',
+			email: 'george.bfhfjr@gmail.com'
+		}
+	]);
+	return (
+		<div style={{ textAlign: 'center' }}>
+			<MyForm
+				onSubmit={(data) => {
+					setRows((currentRows) => [ { id: generate(), ...data }, ...currentRows ]);
+				}}
+			/>
+			<MyTable rows={rows} />
+		</div>
+	);
+};
 
 export default App;
